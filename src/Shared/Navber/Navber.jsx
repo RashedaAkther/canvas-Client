@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from "react-icons/fa";
+import logo from "../../assets/resoures/logo.png";
 const Navber = () => {
-   // const { user, logOut } = Context();
+  // const { user, logOut } = Context();
   // console.log(user);
   // const [data] = useCart();
   // console.log(data);
@@ -36,31 +37,31 @@ const Navber = () => {
         <NavLink to={"dashboard"}>DASHBOARD</NavLink>
       </li>
       <li>
-        <NavLink to={"/our_menu"}>OUR MENU</NavLink>
+        <NavLink to={"/our_menu"}>PROPERTIES</NavLink>
       </li>
       <div>
         {/* {user && ( */}
-          <ul className="lg:flex gap-5 items-center mx-2">
-            <li>
-              <NavLink to={"/shop/salad"}>
-                <FaShoppingCart></FaShoppingCart>OUR SHOP
-              </NavLink>
-            </li>
-            <NavLink to={"/dashboard/cart"} className="">
-             <button > MY CART</button>
-              {/* <li className="badge badge-secondary">+{data?.length}</li> */}
+        <ul className="lg:flex gap-5 items-center mx-2">
+          <li>
+            <NavLink to={"/shop/salad"}>
+              <FaShoppingCart></FaShoppingCart>WISHLIST
             </NavLink>
-          </ul>
+          </li>
+          <NavLink to={"/dashboard/cart"} className="">
+            <button> Properties</button>
+            {/* <li className="badge badge-secondary">+{data?.length}</li> */}
+          </NavLink>
+        </ul>
         {/* )} */}
       </div>
       {/* {user ? ( */}
-        <li className="text-end ">
-          <NavLink >SIGN OUT</NavLink>
-        </li>
+      <li className="text-end ">
+        <NavLink>SIGN OUT</NavLink>
+      </li>
       {/* ) : ( */}
-        <li className="text-end ">
-          <NavLink to={"/login"}>SIGN IN</NavLink>
-        </li>
+      <li className="text-end ">
+        <NavLink to={"/login"}>SIGN IN</NavLink>
+      </li>
       {/* )} */}
     </>
   );
@@ -93,10 +94,18 @@ const Navber = () => {
               {navOptions}
             </ul>
           </div>
-          <div className="">
-            <a className="btn  btn-ghost normal-case text-xl">Bistro Boss</a>
 
-            <p className="uppercase text-xl font-bold -mt-2 pl-2">Restaurant</p>
+          <div className="flex ">
+            <div>
+              <img className="h-10 md:h-16 " src={logo} />
+            </div>
+            <div className="-ml-2 md:-ml-5">
+              <a className="normal-case text-xl">Canvas</a>
+
+              <p className="uppercase text-xl font-bold -mt-2 pl-2">
+                Properties
+              </p>
+            </div>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
