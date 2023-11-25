@@ -1,74 +1,41 @@
 import { NavLink } from "react-router-dom";
 
-import { FaShoppingCart } from "react-icons/fa";
+
 import logo from "../../assets/resoures/logo.png";
+import Context from "../../Hooks/useContext";
 const Navber = () => {
-  // const { user, logOut } = Context();
-  // console.log(user);
-  // const [data] = useCart();
-  // console.log(data);
-  // function HomeIcon(props) {
-  //   return (
-  //     <SvgIcon {...props}>
-  //       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-  //     </SvgIcon>
-  //   );
-  // }
-  // const HandlelogOut = () => {
-  //   logOut()
-  //     .then(() => {})
-  //     .catch((error) => console.log(error));
-  // };
+  const { user, logOut } = Context();
+  console.log(user);
+
+ 
+  const HandlelogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   const navOptions = (
     <>
       <li>
         <NavLink to={"/"}>
-          {/* <Stack direction="row" spacing={3}>
-            <HomeIcon color="success" />
-          </Stack> */}
+         
           HOME
         </NavLink>
       </li>
+     
+     
       <li>
-        <NavLink to={"/contact_us"}>CONTACT US</NavLink>
-      </li>
-      <li>
-        <NavLink to={"dashboard"}>DASHBOARD</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/our_menu"}>PROPERTIES</NavLink>
+        <NavLink to={"/Properties"}>PROPERTIES</NavLink>
       </li>
       <div>
-        {/* {user && ( */}
-        <ul className="lg:flex gap-5 items-center mx-2">
-          <li>
-            <NavLink to={"/shop/salad"}>
-              <FaShoppingCart></FaShoppingCart>WISHLIST
-            </NavLink>
-          </li>
-          <NavLink to={"/dashboard/cart"} className="">
-            <button> Properties</button>
-            {/* <li className="badge badge-secondary">+{data?.length}</li> */}
-          </NavLink>
-        </ul>
-        {/* )} */}
       </div>
-      {/* {user ? ( */}
-      <li className="text-end ">
-        <NavLink>SIGN OUT</NavLink>
-      </li>
-      {/* ) : ( */}
-      <li className="text-end ">
-        <NavLink to={"/login"}>SIGN IN</NavLink>
-      </li>
-      {/* )} */}
+
     </>
   );
 
   return (
     <>
-      <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl bg-black text-white">
+      <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl bg-black text-yellow-400 text-2xl font-bold">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -111,9 +78,85 @@ const Navber = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
-        {/* <div className="navbar-end">
-                    <a className="btn">LOGIN NOW</a>
-                </div> */}
+        <div className="navbar-end ml-10 ">
+          {user?.email ? (
+            <div className="dropdown dropdown-end dropdown-hover text-black ">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user.photoURL} />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content  mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <NavLink
+                    to={"/profile"}
+                    className={({isPending, isActive }) =>
+                    isPending
+                    ? "pending "
+                    : isPending
+                    ? "pending "
+                    : isActive
+                    ? "btn btn-warning "
+                    : "btn btn-ghost "
+                    }
+                  >
+                    PROFILE
+                  </NavLink>
+                </li>
+                <li className=" py-2 ">
+                  <NavLink
+                    to={"/dashboard"}
+                    className={({isPending, isActive }) =>
+                    isPending
+                    ? "pending "
+                    : isPending
+                    ? "pending "
+                    : isActive
+                    ? "btn btn-warning "
+                    : "btn btn-outline btn-warning "
+                    }
+                  >
+                    DASHBOARD
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={({isPending, isActive }) =>
+                    isPending
+                    ? "pending "
+                    : isPending
+                    ? "pending "
+                    : isActive
+                    ? "btn btn-warning "
+                    : "btn btn-ghost "
+                    }
+                    onClick={logOut}
+                  >
+                    LOGOUT
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "pending "
+                  : isPending
+                  ? "pending "
+                  : isActive
+                  ? "btn btn-warning "
+                  : "btn btn-ghost "
+              }
+            >
+              Login
+            </NavLink>
+          )}
+        </div>
       </div>
     </>
   );

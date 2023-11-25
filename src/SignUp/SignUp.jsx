@@ -1,20 +1,19 @@
 import { Helmet } from "react-helmet-async";
-import { useForm } from "react-hook-form";
 
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import Context from "../../Hooks/useContext";
+
 import { FcGoogle } from "react-icons/fc";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import Context from "../Hooks/useContext";
+const api_key ="cb6b3a1f2b26ed9b54559cadceda27ec"
 
-const api_key ="2096348e81bc39817643de553a77e7db"
 const SignUp = () => {
   const [ShowPassword, setShowPassword] = useState(false);
-  const { createUser, updeateProfile } = Context();
+  const { createUser, updateUserProfile } = Context();
   const navigate = useNavigate();
 
   const Handleregister =async (e) => {
@@ -22,67 +21,120 @@ const SignUp = () => {
     const emailvalue = e.target.email.value;
     const namevalue = e.target.name.value;
     const passwordvalue = e.target.password.value;
-    // console.log(e.target.image.files[0]);
+    console.log(e.target.image.files[0]);
     const image =e.target.image.files[0]
+
+    const formData = new FormData();
+    formData.append("image", image);
     // console.log(image);
-    const formData = new FormData()
-    formData.append('image', image)
-    // console.log(image);
-    const res= await axios.post(
-      https://api.imgbb.com/1/upload?key=${api_key},
+    const { data } = await axios.post(
+     ` https://api.imgbb.com/1/upload?key=${api_key}`,
       formData
-    )
-    console.log(res.data.data.display_url);
- 
- 
-    console.log();
+    );
+    console.log(data.data.display_url);
+
     if (
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{6,}$/.test(
         passwordvalue
       )
     ) {
-      console.log("Valid password:", passwordvalue);
-      createUser(emailvalue, passwordvalue)
-        .then((result) => {
-          toast.success(result.user, "You Have SuccessFully Create Account");
-          updeateProfile(emailvalue, namevalue, res.data.data.display_url)
-            .then((results) => {
-              console.log(results);
-              // toast.success("🦄 Wow so easy!", {
-              //   position: "top-right",
-              //   autoClose: 5000,
-              //   hideProgressBar: false,
-              //   closeOnClick: true,
-              //   pauseOnHover: true,
-              //   draggable: true,
-              //   progress: undefined,
-              //   theme: "dark",
-              // });
-
-              console.log(results, "updateProfile successfully  ");
-              // navigate("/");
-            })
-            .catch((error) => {
-              console.log(error.message);
-            });
-        })
-        .catch((error) => {
-          toast.error(error.message);
-        });
+      // console.log("Valid password:", passwordvalue);
     } else {
-      toast.error(
-        "Password must contain at least one letter and one number, and be at least 8 characters long."
-      );
+      toast.error("Password must contain at least one letter and one number, and be at least 8 characters long.");
+
     }
 
-    console.log(emailvalue, passwordvalue,res.data.data.display_url);
+    createUser(emailvalue, passwordvalue)
+    .then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      // create user entry in the database
+      // const userInfo = {
+      //   name: namevalue,
+      //   email: emailvalue,
+      //   image:data?.data?.display_url,
+
+      // };
+      // console.log(userInfo);
+      // AxiosPublic.post("/users", userInfo).then((res) => {
+      //   if (res.data.insertedId) {
+      //     console.log("urser added to the database");
+
+      //     Swal.fire({
+      //       position: "top-end",
+      //       icon: "success",
+      //       title: "User created successfully.",
+      //       showConfirmButton: false,
+      //       timer: 1500,
+      //     });
+      //     navigate("/");
+      //   }
+      // });
+      updateUserProfile(namevalue, data?.data?.display_url)
+
+    }
+    ).catch((error) =>
+    console.log(error)
+  )
+
+    // console.log(image);
+    // const formData = new FormData()
+    // formData.append('image', image)
+    // // console.log(image);
+    // const res= await axios.post(
+    //   `https://api.imgbb.com/1/upload?key=${api_key}`,
+    //   formData
+    // )
+    // console.log(res.data.data.display_url);
+
+    // console.log();
+    // if (
+    //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{6,}$/.test(
+    //     passwordvalue
+    //   )
+    // ) {
+    //   console.log("Valid password:", passwordvalue);
+    //   createUser(emailvalue, passwordvalue)
+    //     .then((result) => {
+    //       toast.success(result.user, "You Have SuccessFully Create Account");
+    //       updeateProfile(emailvalue, namevalue, res.data.data.display_url)
+    //         .then((results) => {
+    //           console.log(results);
+    //           // toast.success("🦄 Wow so easy!", {
+    //           //   position: "top-right",
+    //           //   autoClose: 5000,
+    //           //   hideProgressBar: false,
+    //           //   closeOnClick: true,
+    //           //   pauseOnHover: true,
+    //           //   draggable: true,
+    //           //   progress: undefined,
+    //           //   theme: "dark",
+    //           // });
+
+    //           console.log(results, "updateProfile successfully  ");
+    //           // navigate("/");
+    //         })
+    //         .catch((error) => {
+    //           console.log(error.message);
+    //         });
+    //     })
+    //     .catch((error) => {
+    //       toast.error(error.message);
+    //     });
+    // } else {
+    //   toast.error(
+    //     "Password must contain at least one letter and one number, and be at least 8 characters long."
+    //   );
+    // }
+
+    // console.log(emailvalue, passwordvalue,res.data.data.display_url);
   };
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title> | Sign Up</title>
-      </Helmet>
+      </Helmet> */}
       <div className="flex ">
         <div>
           <p>arman</p>
@@ -156,7 +208,8 @@ const SignUp = () => {
                   />
                   <span
                     className="relative text-xl  -top-8 left-60 md:left-72"
-                    onClick={() => setShowPassword(!ShowPassword)}
+                    onClick={() =>
+                       setShowPassword(!ShowPassword)}
                   >
                     {ShowPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
                   </span>
