@@ -27,6 +27,9 @@ const Navber = () => {
       <li>
         <NavLink to={"/Properties"}>PROPERTIES</NavLink>
       </li>
+      <li>
+        <NavLink to={"/add-properties"}>ADD-PROPERTIES</NavLink>
+      </li>
       <div>
       </div>
 
