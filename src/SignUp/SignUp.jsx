@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import Swal from 'sweetalert2';
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -9,15 +10,18 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import Context from "../Hooks/useContext";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 const api_key ="cb6b3a1f2b26ed9b54559cadceda27ec"
 
 const SignUp = () => {
   const [ShowPassword, setShowPassword] = useState(false);
+  const axiosPublic=useAxiosPublic()
   const { createUser, updateUserProfile } = Context();
   const navigate = useNavigate();
 
   const Handleregister =async (e) => {
     e.preventDefault();
+
     const emailvalue = e.target.email.value;
     const namevalue = e.target.name.value;
     const passwordvalue = e.target.password.value;
@@ -49,27 +53,29 @@ const SignUp = () => {
       const loggedUser = result.user;
       console.log(loggedUser);
       // create user entry in the database
-      // const userInfo = {
-      //   name: namevalue,
-      //   email: emailvalue,
-      //   image:data?.data?.display_url,
+      const userInfo = {
+        name: namevalue,
+        email: emailvalue,
+        image:data?.data?.display_url,
+        role:'user',
+        status:''
 
-      // };
-      // console.log(userInfo);
-      // AxiosPublic.post("/users", userInfo).then((res) => {
-      //   if (res.data.insertedId) {
-      //     console.log("urser added to the database");
+      };
+      console.log(userInfo);
+      axiosPublic.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          console.log("urser added to the database");
 
-      //     Swal.fire({
-      //       position: "top-end",
-      //       icon: "success",
-      //       title: "User created successfully.",
-      //       showConfirmButton: false,
-      //       timer: 1500,
-      //     });
-      //     navigate("/");
-      //   }
-      // });
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        }
+      });
       updateUserProfile(namevalue, data?.data?.display_url)
 
     }

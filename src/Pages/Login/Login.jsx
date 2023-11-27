@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import loginAnimation from "../../../public/Animation - 1700916792840.json"
 import Lottie from 'lottie-react';
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -59,12 +60,27 @@ const Login = () => {
     signInWithGoogle().then((result) => {
       console.log(result.user);
       const userInfo = {
-        email: result.user?.email,
-        name: result.user?.displayName,
+        name: result?.user?.displayName,
+        email: result?.user?.email,
+        image: result?.user?.photoURL,
+        role:'user',
+        status:''
+
       };
+      console.log(userInfo);
       axiosPublic.post("/users", userInfo).then((res) => {
-        console.log(res.data);
-        // navigate("/");
+        if (res.data.insertedId) {
+          console.log("urser added to the database");
+
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        }
       });
     });
   };
@@ -131,7 +147,7 @@ const Login = () => {
                 placeholder="type the captcha above"
                 className="input input-bordered"
                 name="captcha"
-                required
+                // required
               />
             </div>
           </div>
@@ -139,7 +155,7 @@ const Login = () => {
           <div>
           
             <button
-             disabled={disabled}
+            //  disabled={disabled}
               type="submit"
               className="bg-rose-500 w-full rounded-md py-3 text-white"
             >

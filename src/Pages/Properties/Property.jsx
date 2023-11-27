@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Property = () => {
@@ -25,8 +26,8 @@ const Property = () => {
 </div>
 	</div>
 	<div className="grid grid-cols-2 gap-2 items-center justify-between">
-		
-     <button className="btn bg-yellow-600 text-white hover:bg-yellow-500">Details</button>
+		<Link to={"/property-details"}>
+     <button  className="btn btn-xl bg-yellow-600 text-white hover:bg-yellow-500">Details</button></Link>
 		
 			<button className="btn bg-yellow-600 text-white hover:bg-yellow-500">Review</button>
 		
