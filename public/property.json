@@ -1,0 +1,111 @@
+[
+    {
+      "property_image": "image_url_1.jpg",
+      "property_title": "Luxurious Beachfront Mansion",
+      "property_location": "123 Ocean Drive, Seaside Haven",
+      "agent_name": "Emily Thompson",
+      "agent_image": "agent_image_url_1.jpg",
+      "verification_status": "Verified",
+      "price_range": "$5,000,000 - $6,500,000"
+    },
+    {
+      "property_image": "image_url_2.jpg",
+      "property_title": "Charming Suburban Cottage",
+      "property_location": "456 Green Lane, Tranquil Meadows",
+      "agent_name": "Michael Anderson",
+      "agent_image": "agent_image_url_2.jpg",
+      "verification_status": "Pending Verification",
+      "price_range": "$400,000 - $450,000"
+    },
+    {
+      "property_image": "image_url_3.jpg",
+      "property_title": "Sleek Urban Condo with Skyline View",
+      "property_location": "789 Main Street, Metro Heights",
+      "agent_name": "Sophia Davis",
+      "agent_image": "agent_image_url_3.jpg",
+      "verification_status": "Verified",
+      "price_range": "$600,000 - $700,000"
+    },
+    {
+      "property_image": "image_url_4.jpg",
+      "property_title": "Rustic Mountain Retreat",
+      "property_location": "101 Pine Ridge, Serene Valley",
+      "agent_name": "Daniel Martinez",
+      "agent_image": "agent_image_url_4.jpg",
+      "verification_status": "Verified",
+      "price_range": "$750,000 - $900,000"
+    },
+    {
+      "property_image": "image_url_5.jpg",
+      "property_title": "Modern City Penthouse",
+      "property_location": "246 Sky Tower, Metropolitan City",
+      "agent_name": "Olivia White",
+      "agent_image": "agent_image_url_5.jpg",
+      "verification_status": "Pending Verification",
+      "price_range": "$1,200,000 - $1,500,000"
+    },
+    {
+      "property_image": "image_url_6.jpg",
+      "property_title": "Historic Townhouse with Garden",
+      "property_location": "369 Heritage Lane, Old Town",
+      "agent_name": "William Brown",
+      "agent_image": "agent_image_url_6.jpg",
+      "verification_status": "Verified",
+      "price_range": "$950,000 - $1,100,000"
+    },
+    {
+      "property_image": "image_url_7.jpg",
+      "property_title": "Contemporary Lakeside Retreat",
+      "property_location": "777 Lakefront Avenue, Tranquil Waters",
+      "agent_name": "Ava Taylor",
+      "agent_image": "agent_image_url_7.jpg",
+      "verification_status": "Pending Verification",
+      "price_range": "$550,000 - $650,000"
+    },
+    {
+      "property_image": "image_url_8.jpg",
+      "property_title": "Elegant Historic Mansion",
+      "property_location": "888 Grand Boulevard, Heritage District",
+      "agent_name": "Ethan Clark",
+      "agent_image": "agent_image_url_8.jpg",
+      "verification_status": "Verified",
+      "price_range": "$3,500,000 - $4,000,000"
+    },
+    {
+      "property_image": "image_url_9.jpg",
+      "property_title": "Secluded Forest Cabin",
+      "property_location": "474 Whispering Pines, Nature Haven",
+      "agent_name": "Isabella Rodriguez",
+      "agent_image": "agent_image_url_9.jpg",
+      "verification_status": "Verified",
+      "price_range": "$300,000 - $350,000"
+    },
+    {
+      "property_image": "image_url_10.jpg",
+      "property_title": "Sunset View Apartment",
+      "property_location": "626 Horizon Street, Sunset Heights",
+      "agent_name": "Liam Wilson",
+      "agent_image": "agent_image_url_10.jpg",
+      "verification_status": "Pending Verification",
+      "price_range": "$700,000 - $800,000"
+    },
+    {
+      "property_image": "image_url_11.jpg",
+      "property_title": "Coastal Retreat with Private Beach",
+      "property_location": "999 Coastal Lane, Secluded Cove",
+      "agent_name": "Grace Miller",
+      "agent_image": "agent_image_url_11.jpg",
+      "verification_status": "Verified",
+      "price_range": "$1,800,000 - $2,000,000"
+    },
+    {
+      "property_image": "image_url_12.jpg",
+      "property_title": "Industrial Loft in Arts District",
+      "property_location": "333 Art Avenue, Creative Quarter",
+      "agent_name": "Logan Harris",
+      "agent_image": "agent_image_url_12.jpg",
+      "verification_status": "Pending Verification",
+      "price_range": "$500,000 - $600,000"
+    }
+  ]
+  
