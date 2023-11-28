@@ -55,20 +55,23 @@ const Provider = ({ children }) => {
   };
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (User) => {
-      setUser(User);
-      // console.log("Curent user", User);
-
-      // if (User) {
-      //   AxiosPublic.post("/jwt", loggedUser).then((res) => {
-      //     // console.log("token response", res.data);
-      //   });
-      // } else {
-      //   AxiosPublic.post("/logout", loggedUser, {
-      //     withCredentials: true,
-      //   }).then((res) => {
-      //     // console.log("logout",res.data);
-      //   });
-      // }
+      const userEmail = User?.email || user?.email;
+      const loggedUser = { email: userEmail };
+     setUser(User);
+      console.log( 'Curent user',User);
+      setLoading(false);
+      if (User) {
+        AxiosPublic.post("/jwt", loggedUser).then((res) => {
+          console.log("token response", res.data);
+        });
+      } 
+      else {
+        AxiosPublic.post("/logout", loggedUser, {
+          withCredentials: true,
+        }).then((res) => {
+          console.log("logout",res.data);
+        });
+      }
       setLoading(false);
     });
     return () => {
