@@ -1,11 +1,13 @@
-import React from 'react';
+
+import { FaCheck, FaTimesCircle } from 'react-icons/fa';
+
 
 const RequestProperties = () => {
     return (
         <div>
-            <p>request properties</p>
+           
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
-	<h2 className="mb-4 text-2xl font-semibold leadi">Invoices</h2>
+	<h2 className="mb-4 text-2xl text-yellow-600 font-semibold leadi">PROPERTY REQUEST</h2>
 	<div className="overflow-x-auto">
 		<table className="min-w-full text-xs">
 			
@@ -39,9 +41,8 @@ const RequestProperties = () => {
 						<p>$15,792</p>
 					</td>
 					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-							<span>Pending</span>
-						</span>
+                    <p><button className='btn bg-yellow-400 text-white hover:bg-yellow-600 btn-sm'><FaCheck /></button></p>
+					<p><button className='btn bg-yellow-400 text-white hover:bg-yellow-600 btn-sm'><FaTimesCircle /></button></p>
 					</td>
 				</tr>
 				<tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
@@ -63,9 +64,8 @@ const RequestProperties = () => {
 						<p>$275</p>
 					</td>
 					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-							<span>Pending</span>
-						</span>
+                    <p><button className='btn bg-yellow-400 text-white hover:bg-yellow-600 btn-sm'><FaCheck /></button></p>
+					<p><button className='btn bg-yellow-400 text-white hover:bg-yellow-600 btn-sm'><FaTimesCircle /></button></p>
 					</td>
 				</tr>
 				<tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
@@ -87,9 +87,8 @@ const RequestProperties = () => {
 						<p>$8,950,500</p>
 					</td>
 					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-							<span>Pending</span>
-						</span>
+                    <p><button className='btn bg-yellow-400 text-white hover:bg-yellow-600 btn-sm'><FaCheck /></button></p>
+					<p><button className='btn bg-yellow-400 text-white hover:bg-yellow-600 btn-sm'><FaTimesCircle /></button></p>
 					</td>
 				</tr>
 				<tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
@@ -111,8 +110,8 @@ const RequestProperties = () => {
 						<p>$98,218</p>
 					</td>
 					<td className="p-3 text-right">
-					<p><button>Accept</button></p>
-					<p><button>Reject</button></p>
+					<p><button className='btn bg-yellow-400 text-white hover:bg-yellow-600 btn-sm'><FaCheck /></button></p>
+					<p><button className='btn bg-yellow-400 text-white hover:bg-yellow-600 btn-sm'><FaTimesCircle /></button></p>
 					</td>
 				</tr>
 			</tbody>
