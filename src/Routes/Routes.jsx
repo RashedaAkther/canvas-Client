@@ -10,7 +10,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 // import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
-import UserHome from "../Pages/Dashboard/User/UserHome";
+
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import AgentProfile from "../Pages/Dashboard/Agent/AgentProfile";
 import UserProfile from "../Pages/Dashboard/User/UserProfile";
@@ -21,8 +21,9 @@ import MyReviews from "../Pages/Dashboard/User/MyReviews";
 import AgentSoldProperties from "../Pages/Dashboard/Agent/AgentSoldProperties";
 import PropertyBought from "../Pages/Dashboard/User/PropertyBought";
 import AgentAddedProperties from "../Pages/Dashboard/Agent/AgentAddedProperties";
+import AdminRoute from "./AdminRoute";
+import AgentRoute from "./AgentRoute";
 // import Dashboard from "../Pages/Dashboard/Dashboard";
-
 
 export const router = createBrowserRouter([
   {
@@ -34,29 +35,29 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path:"login",
-        element:<Login></Login>,
+        path: "login",
+        element: <Login></Login>,
       },
       {
-        path:"signUp",
-        element:<SignUp></SignUp>
+        path: "signUp",
+        element: <SignUp></SignUp>,
       },
       {
-        path:"Properties",
-        element:<Properties></Properties>
+        path: "Properties",
+        element: <Properties></Properties>,
       },
       {
-        path:"add-properties",
-        element:<AddProperties></AddProperties>
+        path: "add-properties",
+        element: <AddProperties></AddProperties>,
       },
       {
-        path:"property-details",
-        element:<Details></Details>
-      }
+        path: "property-details",
+        element: <Details></Details>,
+      },
     ],
   },
- 
-{
+
+  {
     path: "Dashboard",
     element: (
       <PrivateRoute>
@@ -68,31 +69,30 @@ export const router = createBrowserRouter([
         path: "/Dashboard/AdminProfile",
         element: (
           <PrivateRoute>
-            {/* <AdminRoute> */}
+            <AdminRoute>
               <AdminHome></AdminHome>
-            {/* </AdminRoute> */}
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/Dashboard/AgentProfile",
+        element: (
+          <PrivateRoute>
+            <AgentRoute>
+              <AgentProfile></AgentProfile>
+            </AgentRoute>
           </PrivateRoute>
         ),
       },
       {
-        path:'/Dashboard/AgentProfile',
-        element:<PrivateRoute>
-          {/* <AdminRoute> */}
-            <AgentProfile>
-            </AgentProfile>
-            {/* </AdminRoute> */}
-            </PrivateRoute>
-      },
-      {
         path: "/Dashboard/UserProfile",
-        element: 
+        element: (
           <PrivateRoute>
-            
-       
-              <UserProfile></UserProfile>
-            
+            <UserProfile></UserProfile>
           </PrivateRoute>
-        
+        ),
       },
       {
         path: "/Dashboard/AdminManagesUsers",
@@ -104,7 +104,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-    
+
       // {
       //   path:'/Dashboard',
       //   element:<VolunteerRoute><Dashboard></Dashboard> </VolunteerRoute>
@@ -191,4 +191,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  
 ]);

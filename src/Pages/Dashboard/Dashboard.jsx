@@ -40,7 +40,7 @@ const Dashboard = () => {
       
 
 
-      <div className="col-span h-[100vh] md:col-end-2 bg-indigo-400 lg:w-fit">
+      <div className="col-span h-[100vh] md:col-end-2 bg-yellow-300  lg:w-fit">
   <ul className="menu p-4">
     {isAdmin?.isAdmin ? (
      <div>

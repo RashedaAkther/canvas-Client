@@ -3,9 +3,13 @@ import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/resoures/logo.png";
 import Context from "../../Hooks/useContext";
+import useAdmin from "../../Hooks/useAdmin";
+import useAgent from "../../Hooks/useAgent";
 const Navber = () => {
   const { user, logOut } = Context();
-  console.log(user);
+  const [isAdmin,isAdminLoading]=useAdmin()
+  const [isAgent,isAgentLoading]=useAgent()
+  console.log(user,isAdmin,isAgent);
 
  
   const HandlelogOut = () => {
@@ -96,7 +100,13 @@ const Navber = () => {
          
                 <li className=" py-2 ">
                   <NavLink
-                    to={"/dashboard"}
+                    to={
+                      isAdmin?.isAdmin
+                        ? "/Dashboard/AdminProfile"
+                        : isAgent?.isAgent
+                        ? "/Dashboard/AgentProfile"
+                        : "/Dashboard/UserProfile"
+                    }
                     className={({isPending, isActive }) =>
                     isPending
                     ? "pending "
