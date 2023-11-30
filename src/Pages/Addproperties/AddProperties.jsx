@@ -1,12 +1,77 @@
-
-
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Context from "../../Hooks/useContext";
+import axios from "axios";
+const api_key ="cb6b3a1f2b26ed9b54559cadceda27ec"
 
 
 const AddProperties = () => {
+  const AxiosPublic = useAxiosPublic();
+  const { user } = Context();
+  const handlesumbite = async(e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData();
+
+    const firstname = form.firstname.value;
+
+  
+    const image =e.target.image.files[0]
+
+    formData.append("image", image);
+    // console.log(image);
+    const { data } = await axios.post(
+     ` https://api.imgbb.com/1/upload?key=${api_key}`,
+      formData
+    );
+    console.log(data.data.display_url);
+    const pricerange = form.price.value;
+    const address = form.address.value;
+    const city = form.city.value;
+    const state = form.state.value;
+    const zip = form.zip.value;
+    const username = form.username.value;
+    const email = form.email.value;
+    const bio = form.bio.value;
+
+    const NewFood = {
+    firstname  ,
+image,
+    pricerange,
+    address,
+    city,
+    state,
+    zip,
+    username,
+    email,
+    bio,
+    };
+
+    console.log(NewFood);
+    AxiosPublic.post(`/AddProperty/${user?.email}`, 
+      NewFood,
+  )
+
+     
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Product Added Successfully",
+            icon: "success",
+            confirmButtonText: "Done",
+          });
+        }
+      });
+  };
   return (
     <div>
       <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
-        <form action="" className="container flex flex-col mx-auto space-y-12">
+        <form
+          onSubmit={handlesumbite}
+          className="container flex flex-col mx-auto space-y-12"
+        >
           <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
             <div className="space-y-2 col-span-full lg:col-span-1">
               <p className="font-bold text-yellow-600  italic">
@@ -25,19 +90,21 @@ const AddProperties = () => {
                 </label>
                 <input
                   id="firstname"
+                  name="firstname"
                   type="text"
                   placeholder="First name"
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div>
               <div className="col-span-full sm:col-span-3">
-                <label className="text-sm text-yellow-600 font-semibold italic">
+              <label className="text-sm text-yellow-600 font-semibold italic">
                   Property img
                 </label>
                 <input
-                  id="lastname"
-                  type="text"
-                  placeholder="Last name"
+                  id=""
+                  name="image"
+                  type="file"
+                  placeholder="https:/"
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div>
@@ -47,6 +114,7 @@ const AddProperties = () => {
                 </label>
                 <input
                   id="price-range"
+                  name="price"
                   type="text"
                   placeholder="$00-$00"
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
@@ -58,6 +126,7 @@ const AddProperties = () => {
                 </label>
                 <input
                   id="address"
+                  name="address"
                   type="text"
                   placeholder=""
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
@@ -68,6 +137,7 @@ const AddProperties = () => {
                   City
                 </label>
                 <input
+                  name="city"
                   id="city"
                   type="text"
                   placeholder=""
@@ -80,6 +150,7 @@ const AddProperties = () => {
                 </label>
                 <input
                   id="state"
+                  name="state"
                   type="text"
                   placeholder=""
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
@@ -91,6 +162,7 @@ const AddProperties = () => {
                 </label>
                 <input
                   id="zip"
+                  name="zip"
                   type="text"
                   placeholder=""
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
@@ -110,6 +182,7 @@ const AddProperties = () => {
                 </label>
                 <input
                   id="username"
+                  name="username"
                   type="text"
                   placeholder="Username"
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
@@ -117,12 +190,13 @@ const AddProperties = () => {
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label className="text-sm text-yellow-600 font-semibold italic">
-                  Website
+                  Email 1
                 </label>
                 <input
                   id="website"
-                  type="text"
-                  placeholder="https://"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div>
@@ -132,6 +206,7 @@ const AddProperties = () => {
                 </label>
                 <textarea
                   id="bio"
+                  name="bio"
                   placeholder=""
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 ></textarea>
@@ -142,17 +217,15 @@ const AddProperties = () => {
                 </label>
                 <div className="flex items-center space-x-2">
                   <img
-                    src="https://source.unsplash.com/30x30/?random"
+                    src={user?.displayURL}
                     alt=""
-                    className="w-10 h-10 rounded-full dark:bg-gray-500 dark:bg-gray-700"
+                    className="w-10 h-10 rounded-full  dark:bg-gray-700"
                   />
-                  <button
-                    type="button"
+                  <input
+                    type="submit"
+                    value={"Add Property"}
                     className="px-4 py-2 border bg-yellow-400 text-white hover:bg-yellow-600 hover:border-b-2 border-white rounded-md dark:border-gray-100"
-                  >
-                    ADD PROPERTY
-                  </button>
-                
+                  ></input>
                 </div>
               </div>
             </div>

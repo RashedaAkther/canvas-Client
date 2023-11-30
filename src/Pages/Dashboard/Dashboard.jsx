@@ -1,15 +1,20 @@
 import {
   FaAd,
-  FaBook,
-  FaCalendar,
+
   FaHistory,
   FaHome,
   FaList,
-  FaUser,
+  FaRegUser,
+  
   FaUtensils,
   FaVoicemail,
 } from "react-icons/fa";
-import { MdBroadcastOnHome } from "react-icons/md";
+import { LuLogOut } from "react-icons/lu";
+import {  CiViewList } from "react-icons/ci";
+import { MdBookmarkAdded, MdManageAccounts, MdManageHistory } from "react-icons/md";
+import { HiMiniClipboardDocumentList } from "react-icons/hi2";
+import { GiRainbowStar } from "react-icons/gi";
+import { CgProfile } from "react-icons/cg";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Context from "../../Hooks/useContext";
 import useAdmin from "../../Hooks/useAdmin";
@@ -40,67 +45,61 @@ const Dashboard = () => {
       
 
 
-      <div className="col-span h-[100vh] md:col-end-2 bg-yellow-300  lg:w-fit">
+      <div className="col-span h-[100vh] md:col-end-2 text-white font-semibold bg-yellow-600  lg:w-fit">
   <ul className="menu p-4">
     {isAdmin?.isAdmin ? (
      <div>
               <li>
-                <NavLink to="/dashboard/AdminProfile">
-                  <FaHome></FaHome>
-                  Admin Home
+                <NavLink to="/Dashboard/AdminProfile">
+                <FaRegUser className="text-xl"></FaRegUser>
+                  ADMIN PROFILE
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/AddItems">
-                  <FaUtensils></FaUtensils>
-                  Add Items
+                <NavLink to="/Dashboard/AdminManagesProperties">
+                <MdManageHistory className="text-2xl"></MdManageHistory>
+                 MANAGE PROPERTIES
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/ManageItems">
-                  <FaList></FaList>
-                  Manage Items
+                <NavLink to="/Dashboard/AdminManagesUsers">
+                <MdManageAccounts className="text-2xl"></MdManageAccounts>
+                 MANAGE USERS
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/Booking">
-                  <FaBook></FaBook>
-                  Manage Booking
+                <NavLink to="/Dashboard/AdminManagesReviews">
+                <GiRainbowStar className="text-2xl"></GiRainbowStar>
+                 MANAGE RERIEWS
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/Users">
-                  <FaUser></FaUser>
-                  All Users
-              
-                  </NavLink>
-                  </li>
+           
                 </div>
     ) : isAgent?.isAgent ? (
       <div className=" md ">
       <li>
-        <NavLink to="/Dashboard/UserProfile">
-          <FaHome></FaHome>
-          My Profile
+        <NavLink to="/Dashboard/AgentProfile">
+        <CgProfile />
+          PROFILE
         </NavLink>
       </li>
 
       <li className="mb-2">
-        <NavLink to="/dashboard/donationRequest">
-          <FaHistory></FaHistory>
-          My Donation Request
+        <NavLink to="/Dashboard/AgentAddedProperties">
+        <MdBookmarkAdded />
+          MY ADDED PROPERTIES
         </NavLink>
       </li>
       <li>
-        <NavLink to="/Dashboard/CreateDonation">
-          <FaAd className=" text-xl"></FaAd>
-          Create Donation Request
+        <NavLink to="/Dashboard/AgentSoldProperties">
+        <HiMiniClipboardDocumentList className="text-xl font-bold"></HiMiniClipboardDocumentList>
+          MY SOLD PROPERTIES
         </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/bookings">
+        <NavLink to="/Dashboard/AgentRequestProperties">
           <FaList></FaList>
-          My Bookings
+          REQUESTED PROPERTIES
         </NavLink>
       </li>
       <div className="flex items-center p-2 mt-12 space-x-4 justify-self-end">
@@ -109,7 +108,7 @@ const Dashboard = () => {
           alt=""
           className="w-12 h-12 rounded-lg dark:bg-gray-500"
         />
-        <div>
+        {/* <div>
           <h2 className="text-lg font-semibold">{user?.name}</h2>
           <span className="flex items-center space-x-1">
             <Link
@@ -120,7 +119,7 @@ const Dashboard = () => {
               View profile
             </Link>
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
     ) : (
@@ -132,28 +131,24 @@ const Dashboard = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/dashboard/reservation">
-                        <FaCalendar></FaCalendar>
-                        Reservation
+                      <NavLink to="/Dashboard/UserWhistlist">
+                      <CiViewList />
+
+                        WISHLIST
                       </NavLink>
                     </li>
     
                     <li className="mb-2">
-                      <NavLink to="/dashboard/donationRequest">
+                      <NavLink to="/Dashboard/PropertyBought">
                         <FaHistory></FaHistory>
-                        My Donation Request
+                       BOUGHT PROPERTIES
                       </NavLink>
                     </li>
+                   
                     <li>
-                      <NavLink to="/Dashboard/CreateDonation">
-                        <FaAd className=" text-xl"></FaAd>
-                        Create Donation Request
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/dashboard/bookings">
+                      <NavLink to="/Dashboard/MyReviews">
                         <FaList></FaList>
-                        My Bookings
+                        MY REVIEWS
                       </NavLink>
                     </li>
                     <div className="flex items-center p-2 mt-12 space-x-4 justify-self-end">
@@ -181,33 +176,24 @@ const Dashboard = () => {
     <div className="divider"></div>
     <li>
       <NavLink to="/">
-        <FaHome></FaHome>
+        <FaHome className="text-2xl"></FaHome>
         Home
       </NavLink>
     </li>
-    {!isAdmin?.isAdmin && (
+   
       <li onClick={logOut} className="rounded-sm">
         <a
           rel="noopener noreferrer"
-          className="flex items-center p-2 space-x-3 rounded-md"
+          className="flex items-center m-2 p-2 space-x-3 rounded-md"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-            className="w-5 h-5 fill-current dark:text-gray-400"
-          >
+         <LuLogOut className="text-2xl"></LuLogOut>
             {/* Logout icon path */}
-          </svg>
+         
           <span>Logout</span>
         </a>
       </li>
-    )}
-    <li>
-      <NavLink to="/order/contact">
-        <FaVoicemail></FaVoicemail>
-        Contact
-      </NavLink>
-    </li>
+    
+
   </ul>
 </div>
 
