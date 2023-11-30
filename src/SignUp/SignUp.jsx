@@ -58,7 +58,7 @@ const SignUp = () => {
         email: emailvalue,
         image:data?.data?.display_url,
         role:'user',
-        status:''
+        status:'Veryfied'
 
       };
       console.log(userInfo);

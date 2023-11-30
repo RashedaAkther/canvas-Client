@@ -1,11 +1,13 @@
 import Lottie from "lottie-react";
 import profileAnimation from "../../../../public/profile-animation.json"
-
+import { TypeAnimation } from "react-type-animation";
+import Context from "../../../Hooks/useContext";
 
 const UserProfile = () => {
+	const {user}=Context()
     return (
         <div>
-           
+            
            <div className="p-6 sm:p-12 dark:bg-gray-900 dark:text-gray-100">
 	<div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
 		<img src="https://source.unsplash.com/75x75/?portrait" alt="" className="self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700" />
@@ -38,7 +40,7 @@ const UserProfile = () => {
 	</div>
 </div>
 <div className="w-2/3 grid justify-center items-center">
-<Lottie className="w-3/4" animationData={profileAnimation}></Lottie>
+<Lottie className="w-3/4 text-center" animationData={profileAnimation}></Lottie>
 </div>
         </div>
     );
