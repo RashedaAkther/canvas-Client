@@ -9,7 +9,6 @@ import Details from "../Pages/Properties/Details";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 // import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
-import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import AgentProfile from "../Pages/Dashboard/Agent/AgentProfile";
@@ -24,6 +23,7 @@ import AgentAddedProperties from "../Pages/Dashboard/Agent/AgentAddedProperties"
 import AdminRoute from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
 import RequestProperties from "../Pages/Dashboard/Agent/RequestProperties";
+import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
 // import Dashboard from "../Pages/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
@@ -71,27 +71,24 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <AdminHome></AdminHome>
+              <AdminProfile></AdminProfile>
             </AdminRoute>
           </PrivateRoute>
         ),
       },
-
       {
-        path: "/Dashboard/AgentProfile",
+        path: "/Dashboard/AdminManagesProperties",
         element: (
           <PrivateRoute>
-            <AgentRoute>
-              <AgentProfile></AgentProfile>
-            </AgentRoute>
+            <ManegeProperties></ManegeProperties>
           </PrivateRoute>
         ),
       },
       {
-        path: "/Dashboard/UserProfile",
+        path: "/Dashboard/AdminManagesReviews",
         element: (
           <PrivateRoute>
-            <UserProfile></UserProfile>
+            <ManagesReviews></ManagesReviews>
           </PrivateRoute>
         ),
       },
@@ -105,72 +102,65 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-      // {
-      //   path:'/Dashboard',
-      //   element:<VolunteerRoute><Dashboard></Dashboard> </VolunteerRoute>
-      // },
       {
-        path: "/Dashboard/UserWhistlist",
+        path: "/Dashboard/AgentProfile",
         element: (
           <PrivateRoute>
-            <Whistlist></Whistlist>
+            <AgentRoute>
+              <AgentProfile></AgentProfile>
+            </AgentRoute>
           </PrivateRoute>
         ),
       },
+
       // {
-      //   path: "/Dashboard/CreateDonation",
+      //   path: "/Dashboard/UserProperties",
       //   element: (
       //     <PrivateRoute>
-      //       <></DonationRequestForm>
+      //       <Properties></Properties>
       //     </PrivateRoute>
       //   ),
       // },
-      {
-        path: "/Dashboard/UserProperties",
-        element: (
-          <PrivateRoute>
-            <Properties></Properties>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/Dashboard/AllManageProperties",
-        element: (
-          <PrivateRoute>
-            <ManegeProperties></ManegeProperties>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/Dashboard/AllManageProperties",
-        element: (
-          <PrivateRoute>
-            <ManegeProperties></ManegeProperties>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/Dashboard/ManagesReviews",
-        element: (
-          <PrivateRoute>
-            <ManagesReviews></ManagesReviews>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/Dashboard/MyReviews",
-        element: (
-          <PrivateRoute>
-            <MyReviews></MyReviews>
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/Dashboard/AgentSoldProperties",
         element: (
           <PrivateRoute>
             <AgentSoldProperties></AgentSoldProperties>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/Dashboard/AgentAddedProperties",
+        element: (
+          <PrivateRoute>
+            <AgentAddedProperties></AgentAddedProperties>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/Dashboard/AgentRequestProperties",
+        element: (
+          <PrivateRoute>
+            <RequestProperties></RequestProperties>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/Dashboard/UserProfile",
+        element: (
+          <PrivateRoute>
+            <UserProfile></UserProfile>
+          </PrivateRoute>
+        ),
+      },
+    
+      {
+        path: "/Dashboard/UserWhistlist",
+        element: (
+          <PrivateRoute>
+            <Whistlist></Whistlist>
           </PrivateRoute>
         ),
       },
@@ -183,18 +173,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/Dashboard/AgentAddedProperties",
+        path: "/Dashboard/MyReviews",
         element: (
           <PrivateRoute>
-            <AgentAddedProperties></AgentAddedProperties>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/Dashboard/RequestProperties",
-        element: (
-          <PrivateRoute>
-            <RequestProperties></RequestProperties>
+            <MyReviews></MyReviews>
           </PrivateRoute>
         ),
       },

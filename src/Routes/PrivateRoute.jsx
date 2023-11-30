@@ -3,7 +3,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import Context from "../Hooks/useContext";
 
-
 const PrivateRoute = ({ children }) => {
   const { user, loading } = Context();
   const location = useLocation();
@@ -22,11 +21,11 @@ const PrivateRoute = ({ children }) => {
       </div>
     );
 
-  if (!user) {
-    return <Navigate   state={location.pathname} to="/login"  />;
+  if (user && !loading) {
+    return children;
   }
 
-  return children;
+  return <Navigate state={location.pathname} to="/login" />;
 };
 
 export default PrivateRoute;
