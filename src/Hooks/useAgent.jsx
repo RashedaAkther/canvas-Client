@@ -11,6 +11,7 @@ const useAgent = () => {
   console.log(user);
   const { data: isAgent, isLoading: isAgentLoading } = useQuery({
     queryKey: ["requestAgent", user?.email],
+    enabled:!!user?.email,
 
     queryFn: async () => {
       const res = await axiosSecure.get(`/Agent/${user?.email}`);
