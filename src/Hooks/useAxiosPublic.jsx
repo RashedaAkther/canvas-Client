@@ -2,7 +2,7 @@ import axios from "axios";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const AxiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://assignment-server-beige.vercel.app",
   withCredentials: "true",
 });
 const useAxiosPublic = () => {

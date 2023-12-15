@@ -24,6 +24,8 @@ import AdminRoute from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
 import RequestProperties from "../Pages/Dashboard/Agent/RequestProperties";
 import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
+import HotDeals from "../Pages/Home/HotDeals";
+import axios from "axios";
 // import Dashboard from "../Pages/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
@@ -51,10 +53,14 @@ export const router = createBrowserRouter([
         path: "add-properties",
         element: <AddProperties></AddProperties>,
       },
+
       {
-        path: "property-details",
-        element: <Details></Details>,
-      },
+        path:"PropertyDetails/:id",
+        element:<PrivateRoute><Details></Details></PrivateRoute>,
+        loader:({params})=>fetch(`https://assignment-server-beige.vercel.app/ALlProperties/${params.id}`)
+        // loader:({params})=>axios.get(`https://assignment-server-beige.vercel.app/Properties/${params.id}`)
+      }
+
     ],
   },
 
@@ -155,7 +161,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-    
+
       {
         path: "/Dashboard/UserWhistlist",
         element: (
@@ -182,5 +188,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  
 ]);

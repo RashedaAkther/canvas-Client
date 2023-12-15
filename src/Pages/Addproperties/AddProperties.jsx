@@ -25,7 +25,10 @@ const AddProperties = () => {
       formData
     );
     console.log(data.data.display_url);
+    const agentimage=user?.displayURL
+    const imagedata= data.data.display_url
     const pricerange = form.price.value;
+    const title = form.title.value;
     const address = form.address.value;
     const city = form.city.value;
     const state = form.state.value;
@@ -33,18 +36,24 @@ const AddProperties = () => {
     const username = form.username.value;
     const email = form.email.value;
     const bio = form.bio.value;
+    title
 
     const NewFood = {
+      verification_sataus:'veryfied',
+    property_status : 'sell',
+      agentimage,
     firstname  ,
-image,
+image:imagedata,
     pricerange,
     address,
     city,
     state,
     zip,
+    title,
     username,
     email,
     bio,
+    AgentPhoto :user?.photoURL
     };
 
     console.log(NewFood);
@@ -65,6 +74,9 @@ image,
         }
       });
   };
+
+
+  
   return (
     <div>
       <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
@@ -117,6 +129,16 @@ image,
                   name="price"
                   type="text"
                   placeholder="$00-$00"
+                  className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
+                />
+                <label className="text-sm text-yellow-600 font-semibold italic">
+                  Price Range
+                </label>
+                <input
+                  id="Title"
+                  name="title"
+                  type="text"
+                  placeholder="title"
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div>
@@ -183,6 +205,8 @@ image,
                 <input
                   id="username"
                   name="username"
+                  defaultValue={user?.displayName
+                  }
                   type="text"
                   placeholder="Username"
                   className="w-full rounded-md border-2 border-yellow-400 p-2 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
@@ -194,6 +218,7 @@ image,
                 </label>
                 <input
                   id="website"
+                  defaultValue={user?.email}
                   name="email"
                   type="email"
                   placeholder="Email"
@@ -217,7 +242,7 @@ image,
                 </label>
                 <div className="flex items-center space-x-2">
                   <img
-                    src={user?.displayURL}
+                    src={user?.photoURL}
                     alt=""
                     className="w-10 h-10 rounded-full  dark:bg-gray-700"
                   />
